@@ -3,7 +3,6 @@
 
 // Write your JavaScript code.
 
-
 showInPopUp = (url, title) => {
     $.ajax({
         type: 'GET',
@@ -34,6 +33,7 @@ jQueryAjaxPost = form => {
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');
                     $('#form-modal').modal('hide');
+                    $.notify('submitted successfully', { globalPosition: 'top center', className:'success' });
                 }
                 else
                     $('#form-modal .modal-body').html(res.html);
@@ -60,6 +60,7 @@ jQueryAjaxDelete = form => {
                 processData: false,
                 success: function (res) {
                     $('#view-all').html(res.html);
+                    $.notify('delete successfully', { globalPosition: 'top center', className:'success' });
                 },
                 error: function (err) {
                     console.log(err)
