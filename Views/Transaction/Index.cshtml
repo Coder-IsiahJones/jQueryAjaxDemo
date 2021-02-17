@@ -21,7 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th><a asp-action="AddOrEdit" class="btn btn-success text-white"><i class="fas fa-random"></i>New Transaction</a></th>
+            <th><a onclick="showInPopUp('@Url.Action("AddOrEdit","Transaction", null, Context.Request.Scheme)', 'New Transaction')" class="btn btn-success text-white"><i class="fas fa-random"></i>New Transaction</a></th>
         </tr>
     </thead>
     <tbody>
