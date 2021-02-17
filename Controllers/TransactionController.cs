@@ -24,28 +24,23 @@ namespace jQueryAjaxDemo.Controllers
             return View(await _context.Transactions.ToListAsync());
         }
 
-        // GET: Transaction/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Transaction/AddOrEdit
+        // GET: Transaction/AddOrEdit/5
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
-            if (id == null)
-            {
-                return NotFound();
+            if (id == 0)
+                {
+                return View();
             }
-
-            var transactionModel = await _context.Transactions
-                .FirstOrDefaultAsync(m => m.TransactionId == id);
-            if (transactionModel == null)
+            else
             {
-                return NotFound();
+                var transactionModel = await _context.Transactions.FindAsync(id);
+                if (transactionModel == null)
+                {
+                    return NotFound();
+                }
+                return View(transactionModel);
             }
-
-            return View(transactionModel);
-        }
-
-        // GET: Transaction/Create
-        public IActionResult Create()
-        {
-            return View();
         }
 
         // POST: Transaction/Create
